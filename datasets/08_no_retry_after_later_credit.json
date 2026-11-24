@@ -1,0 +1,84 @@
+{
+  "key": "no_retry_after_credit",
+  "filename": "08_no_retry_after_later_credit.json",
+  "title": "08. Rejected Payment Followed by Later Credit (No Retry)",
+  "description": "Section 23 fixture: A=0, B=0, C=10. P1(A-\u003eB, 10) is attempted first and rejected for insufficient funds (consuming 1 unit). It releases P2(C-\u003eA, 10) which succeeds. P1 is never retried.",
+  "batch": {
+    "id": "fixture-08-no-retry-after-credit",
+    "schema_version": "ppse.v1",
+    "name": "08. Rejected Payment Followed by Later Credit (No Retry)",
+    "description": "Section 23 fixture: A=0, B=0, C=10. P1(A-\u003eB, 10) is attempted first and rejected for insufficient funds (consuming 1 unit). It releases P2(C-\u003eA, 10) which succeeds. P1 is never retried.",
+    "currency": "SEK",
+    "created_at": "2026-01-01T00:00:00Z",
+    "configuration": {
+      "scenario": "custom",
+      "account_count": 3,
+      "payment_count": 2,
+      "opening_balance": "0",
+      "min_amount": "10",
+      "max_amount": "10"
+    },
+    "accounts": [
+      {
+        "id": "A",
+        "opening_balance": "0"
+      },
+      {
+        "id": "B",
+        "opening_balance": "0"
+      },
+      {
+        "id": "C",
+        "opening_balance": "10"
+      }
+    ],
+    "payments": [
+      {
+        "position": 0,
+        "id": "P1",
+        "sender": "A",
+        "receiver": "B",
+        "amount": "10"
+      },
+      {
+        "position": 1,
+        "id": "P2",
+        "sender": "C",
+        "receiver": "A",
+        "amount": "10"
+      }
+    ],
+    "total_opening_funds": "10",
+    "fingerprint": ""
+  },
+  "expected": {
+    "outcomes": {
+      "P1": "rejected_insufficient_funds",
+      "P2": "succeeded"
+    },
+    "final_balances": {
+      "A": 10,
+      "B": 0,
+      "C": 0
+    },
+    "edge_count": 1,
+    "expected_edges": [
+      {
+        "from_pos": 0,
+        "to_pos": 1,
+        "accounts": [
+          "A"
+        ]
+      }
+    ],
+    "critical_path_len": 2,
+    "critical_path_ids": [
+      "P1",
+      "P2"
+    ],
+    "makespan_by_workers": {
+      "1": 2,
+      "2": 2
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "key": "worked_example_6",
+  "filename": "04_worked_example_6_payments.json",
+  "title": "04. Teaching Worked Example (6 Payments)",
+  "description": "Authoritative 6-payment example from Section 5: P1(A-\u003eB), P2(C-\u003eD), P3(B-\u003eE), P4(F-\u003eG), P5(D-\u003eF), P6(E-\u003eG), amount 10, opening balance 100.",
+  "batch": {
+    "id": "fixture-04-worked-example-6",
+    "schema_version": "ppse.v1",
+    "name": "04. Teaching Worked Example (6 Payments)",
+    "description": "Authoritative 6-payment example from Section 5: P1(A-\u003eB), P2(C-\u003eD), P3(B-\u003eE), P4(F-\u003eG), P5(D-\u003eF), P6(E-\u003eG), amount 10, opening balance 100.",
+    "currency": "SEK",
+    "created_at": "2026-01-01T00:00:00Z",
+    "configuration": {
+      "scenario": "custom",
+      "account_count": 7,
+      "payment_count": 6,
+      "opening_balance": "100",
+      "min_amount": "10",
+      "max_amount": "10"
+    },
+    "accounts": [
+      {
+        "id": "A",
+        "opening_balance": "100"
+      },
+      {
+        "id": "B",
+        "opening_balance": "100"
+      },
+      {
+        "id": "C",
+        "opening_balance": "100"
+      },
+      {
+        "id": "D",
+        "opening_balance": "100"
+      },
+      {
+        "id": "E",
+        "opening_balance": "100"
+      },
+      {
+        "id": "F",
+        "opening_balance": "100"
+      },
+      {
+        "id": "G",
+        "opening_balance": "100"
+      }
+    ],
+    "payments": [
+      {
+        "position": 0,
+        "id": "P1",
+        "sender": "A",
+        "receiver": "B",
+        "amount": "10"
+      },
+      {
+        "position": 1,
+        "id": "P2",
+        "sender": "C",
+        "receiver": "D",
+        "amount": "10"
+      },
+      {
+        "position": 2,
+        "id": "P3",
+        "sender": "B",
+        "receiver": "E",
+        "amount": "10"
+      },
+      {
+        "position": 3,
+        "id": "P4",
+        "sender": "F",
+        "receiver": "G",
+        "amount": "10"
+      },
+      {
+        "position": 4,
+        "id": "P5",
+        "sender": "D",
+        "receiver": "F",
+        "amount": "10"
+      },
+      {
+        "position": 5,
+        "id": "P6",
+        "sender": "E",
+        "receiver": "G",
+        "amount": "10"
+      }
+    ],
+    "total_opening_funds": "700",
+    "fingerprint": ""
+  },
+  "expected": {
+    "outcomes": {
+      "P1": "succeeded",
+      "P2": "succeeded",
+      "P3": "succeeded",
+      "P4": "succeeded",
+      "P5": "succeeded",
+      "P6": "succeeded"
+    },
+    "final_balances": {
+      "A": 90,
+      "B": 100,
+      "C": 90,
+      "D": 100,
+      "E": 100,
+      "F": 100,
+      "G": 120
+    },
+    "edge_count": 5,
+    "expected_edges": [
+      {
+        "from_pos": 0,
+        "to_pos": 2,
+        "accounts": [
+          "B"
+        ]
+      },
+      {
+        "from_pos": 1,
+        "to_pos": 4,
+        "accounts": [
+          "D"
+        ]
+      },
+      {
+        "from_pos": 3,
+        "to_pos": 4,
+        "accounts": [
+          "F"
+        ]
+      },
+      {
+        "from_pos": 2,
+        "to_pos": 5,
+        "accounts": [
+          "E"
+        ]
+      },
+      {
+        "from_pos": 3,
+        "to_pos": 5,
+        "accounts": [
+          "G"
+        ]
+      }
+    ],
+    "critical_path_len": 3,
+    "critical_path_ids": [
+      "P1",
+      "P3",
+      "P6"
+    ],
+    "makespan_by_workers": {
+      "1": 6,
+      "2": 3,
+      "3": 3,
+      "4": 3,
+      "6": 3
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "key": "independent_payments",
+  "filename": "05_independent_payments.json",
+  "title": "05. Disjoint Independent Payments (4 Payments, 8 Accounts)",
+  "description": "Four payments using 8 completely disjoint accounts. Zero dependency edges, critical path length 1, ideal parallel speedup.",
+  "batch": {
+    "id": "fixture-05-independent-payments",
+    "schema_version": "ppse.v1",
+    "name": "05. Disjoint Independent Payments (4 Payments, 8 Accounts)",
+    "description": "Four payments using 8 completely disjoint accounts. Zero dependency edges, critical path length 1, ideal parallel speedup.",
+    "currency": "SEK",
+    "created_at": "2026-01-01T00:00:00Z",
+    "configuration": {
+      "scenario": "independent",
+      "account_count": 8,
+      "payment_count": 4,
+      "opening_balance": "100",
+      "min_amount": "20",
+      "max_amount": "20"
+    },
+    "accounts": [
+      {
+        "id": "A1",
+        "opening_balance": "100"
+      },
+      {
+        "id": "A2",
+        "opening_balance": "100"
+      },
+      {
+        "id": "A3",
+        "opening_balance": "100"
+      },
+      {
+        "id": "A4",
+        "opening_balance": "100"
+      },
+      {
+        "id": "A5",
+        "opening_balance": "100"
+      },
+      {
+        "id": "A6",
+        "opening_balance": "100"
+      },
+      {
+        "id": "A7",
+        "opening_balance": "100"
+      },
+      {
+        "id": "A8",
+        "opening_balance": "100"
+      }
+    ],
+    "payments": [
+      {
+        "position": 0,
+        "id": "P1",
+        "sender": "A1",
+        "receiver": "A2",
+        "amount": "20"
+      },
+      {
+        "position": 1,
+        "id": "P2",
+        "sender": "A3",
+        "receiver": "A4",
+        "amount": "20"
+      },
+      {
+        "position": 2,
+        "id": "P3",
+        "sender": "A5",
+        "receiver": "A6",
+        "amount": "20"
+      },
+      {
+        "position": 3,
+        "id": "P4",
+        "sender": "A7",
+        "receiver": "A8",
+        "amount": "20"
+      }
+    ],
+    "total_opening_funds": "800",
+    "fingerprint": ""
+  },
+  "expected": {
+    "outcomes": {
+      "P1": "succeeded",
+      "P2": "succeeded",
+      "P3": "succeeded",
+      "P4": "succeeded"
+    },
+    "final_balances": {
+      "A1": 80,
+      "A2": 120,
+      "A3": 80,
+      "A4": 120,
+      "A5": 80,
+      "A6": 120,
+      "A7": 80,
+      "A8": 120
+    },
+    "edge_count": 0,
+    "critical_path_len": 1,
+    "critical_path_ids": [
+      "P1"
+    ],
+    "makespan_by_workers": {
+      "1": 4,
+      "2": 2,
+      "4": 1
+    }
+  }
+}

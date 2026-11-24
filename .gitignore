@@ -1,0 +1,36 @@
+# Binaries and build artifacts
+/paymentexplorer
+/bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test binary and coverage outputs
+*.test
+*.out
+coverage.txt
+coverage.html
+*.prof
+
+# Local runtime data and SQLite databases
+/data/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Go workspace file (if created locally)
+go.work
+go.work.sum
+
+# Editor / OS temporary files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

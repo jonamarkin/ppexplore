@@ -1,0 +1,84 @@
+{
+  "key": "earlier_credit_funding",
+  "filename": "07_earlier_credit_funding.json",
+  "title": "07. Earlier Credit Funds Later Payment",
+  "description": "Section 23 fixture: A=0, B=0, C=10. P1(C-\u003eA, 10) credits A before P2(A-\u003eB, 10) executes. Because P1-\u003eP2 dependency on A is respected, both succeed.",
+  "batch": {
+    "id": "fixture-07-earlier-credit-funding",
+    "schema_version": "ppse.v1",
+    "name": "07. Earlier Credit Funds Later Payment",
+    "description": "Section 23 fixture: A=0, B=0, C=10. P1(C-\u003eA, 10) credits A before P2(A-\u003eB, 10) executes. Because P1-\u003eP2 dependency on A is respected, both succeed.",
+    "currency": "SEK",
+    "created_at": "2026-01-01T00:00:00Z",
+    "configuration": {
+      "scenario": "custom",
+      "account_count": 3,
+      "payment_count": 2,
+      "opening_balance": "0",
+      "min_amount": "10",
+      "max_amount": "10"
+    },
+    "accounts": [
+      {
+        "id": "A",
+        "opening_balance": "0"
+      },
+      {
+        "id": "B",
+        "opening_balance": "0"
+      },
+      {
+        "id": "C",
+        "opening_balance": "10"
+      }
+    ],
+    "payments": [
+      {
+        "position": 0,
+        "id": "P1",
+        "sender": "C",
+        "receiver": "A",
+        "amount": "10"
+      },
+      {
+        "position": 1,
+        "id": "P2",
+        "sender": "A",
+        "receiver": "B",
+        "amount": "10"
+      }
+    ],
+    "total_opening_funds": "10",
+    "fingerprint": ""
+  },
+  "expected": {
+    "outcomes": {
+      "P1": "succeeded",
+      "P2": "succeeded"
+    },
+    "final_balances": {
+      "A": 0,
+      "B": 10,
+      "C": 0
+    },
+    "edge_count": 1,
+    "expected_edges": [
+      {
+        "from_pos": 0,
+        "to_pos": 1,
+        "accounts": [
+          "A"
+        ]
+      }
+    ],
+    "critical_path_len": 2,
+    "critical_path_ids": [
+      "P1",
+      "P2"
+    ],
+    "makespan_by_workers": {
+      "1": 2,
+      "2": 2
+    }
+  }
+}

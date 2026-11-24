@@ -1,0 +1,61 @@
+{
+  "key": "single_rejection",
+  "filename": "03_single_rejection.json",
+  "title": "03. Single Insufficient-Funds Rejection",
+  "description": "A single payment P1: A -\u003e B of amount 50 when A only has 30. Rejected without changing either balance, consuming 1 logical unit.",
+  "batch": {
+    "id": "fixture-03-single-rejection",
+    "schema_version": "ppse.v1",
+    "name": "03. Single Insufficient-Funds Rejection",
+    "description": "A single payment P1: A -\u003e B of amount 50 when A only has 30. Rejected without changing either balance, consuming 1 logical unit.",
+    "currency": "SEK",
+    "created_at": "2026-01-01T00:00:00Z",
+    "configuration": {
+      "scenario": "custom",
+      "account_count": 2,
+      "payment_count": 1,
+      "opening_balance": "30",
+      "min_amount": "50",
+      "max_amount": "50"
+    },
+    "accounts": [
+      {
+        "id": "A",
+        "opening_balance": "30"
+      },
+      {
+        "id": "B",
+        "opening_balance": "10"
+      }
+    ],
+    "payments": [
+      {
+        "position": 0,
+        "id": "P1",
+        "sender": "A",
+        "receiver": "B",
+        "amount": "50"
+      }
+    ],
+    "total_opening_funds": "40",
+    "fingerprint": ""
+  },
+  "expected": {
+    "outcomes": {
+      "P1": "rejected_insufficient_funds"
+    },
+    "final_balances": {
+      "A": 30,
+      "B": 10
+    },
+    "edge_count": 0,
+    "critical_path_len": 1,
+    "critical_path_ids": [
+      "P1"
+    ],
+    "makespan_by_workers": {
+      "1": 1,
+      "2": 1
+    }
+  }
+}

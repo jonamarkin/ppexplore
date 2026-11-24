@@ -1,0 +1,128 @@
+{
+  "key": "shared_account_chain",
+  "filename": "06_shared_account_chain.json",
+  "title": "06. Shared Account Serialization Chain (4 Payments)",
+  "description": "All four payments share common sender account A1 (with opening balance 50, each transfer 20). Forms a linear chain P1-\u003eP2-\u003eP3-\u003eP4 where P1 and P2 succeed and P3 and P4 are rejected for insufficient funds.",
+  "batch": {
+    "id": "fixture-06-shared-account-chain",
+    "schema_version": "ppse.v1",
+    "name": "06. Shared Account Serialization Chain (4 Payments)",
+    "description": "All four payments share common sender account A1 (with opening balance 50, each transfer 20). Forms a linear chain P1-\u003eP2-\u003eP3-\u003eP4 where P1 and P2 succeed and P3 and P4 are rejected for insufficient funds.",
+    "currency": "SEK",
+    "created_at": "2026-01-01T00:00:00Z",
+    "configuration": {
+      "scenario": "shared_account",
+      "account_count": 5,
+      "payment_count": 4,
+      "opening_balance": "50",
+      "min_amount": "20",
+      "max_amount": "20",
+      "common_account": "A1"
+    },
+    "accounts": [
+      {
+        "id": "A1",
+        "opening_balance": "50"
+      },
+      {
+        "id": "A2",
+        "opening_balance": "50"
+      },
+      {
+        "id": "A3",
+        "opening_balance": "50"
+      },
+      {
+        "id": "A4",
+        "opening_balance": "50"
+      },
+      {
+        "id": "A5",
+        "opening_balance": "50"
+      }
+    ],
+    "payments": [
+      {
+        "position": 0,
+        "id": "P1",
+        "sender": "A1",
+        "receiver": "A2",
+        "amount": "20"
+      },
+      {
+        "position": 1,
+        "id": "P2",
+        "sender": "A1",
+        "receiver": "A3",
+        "amount": "20"
+      },
+      {
+        "position": 2,
+        "id": "P3",
+        "sender": "A1",
+        "receiver": "A4",
+        "amount": "20"
+      },
+      {
+        "position": 3,
+        "id": "P4",
+        "sender": "A1",
+        "receiver": "A5",
+        "amount": "20"
+      }
+    ],
+    "total_opening_funds": "250",
+    "fingerprint": ""
+  },
+  "expected": {
+    "outcomes": {
+      "P1": "succeeded",
+      "P2": "succeeded",
+      "P3": "rejected_insufficient_funds",
+      "P4": "rejected_insufficient_funds"
+    },
+    "final_balances": {
+      "A1": 10,
+      "A2": 70,
+      "A3": 70,
+      "A4": 50,
+      "A5": 50
+    },
+    "edge_count": 3,
+    "expected_edges": [
+      {
+        "from_pos": 0,
+        "to_pos": 1,
+        "accounts": [
+          "A1"
+        ]
+      },
+      {
+        "from_pos": 1,
+        "to_pos": 2,
+        "accounts": [
+          "A1"
+        ]
+      },
+      {
+        "from_pos": 2,
+        "to_pos": 3,
+        "accounts": [
+          "A1"
+        ]
+      }
+    ],
+    "critical_path_len": 4,
+    "critical_path_ids": [
+      "P1",
+      "P2",
+      "P3",
+      "P4"
+    ],
+    "makespan_by_workers": {
+      "1": 4,
+      "2": 4,
+      "4": 4
+    }
+  }
+}
